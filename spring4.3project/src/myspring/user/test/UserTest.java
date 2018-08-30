@@ -29,7 +29,17 @@ public class UserTest {
 	@Autowired
 	SqlSession sqlSession;
 	
+	
 	@Test
+	public void status() {
+		List<StudentVO> stuList = sqlSession.selectList("studentNS.selectStudentCourseStatusById");
+		
+		for (StudentVO studentVO : stuList) {
+			System.out.println(studentVO);
+		}
+	}
+	
+	@Test @Ignore
 	public void studentTable() {
 		List<StudentVO> stuList = sqlSession.selectList("studentNS.selectStudentDeptById");
 		
@@ -38,7 +48,7 @@ public class UserTest {
 		}
 	}
 	
-	@Test @Ignore
+	@Test
 	public void usersTable() {
 		List<UserVO> userList = sqlSession.selectList("userNS.selectUserList");
 		

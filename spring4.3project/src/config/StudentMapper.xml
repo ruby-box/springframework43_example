@@ -47,6 +47,7 @@
 			jdbcType="VARCHAR" />
 		<result property="daynight" column="stu_daynight" javaType="String"
 			jdbcType="VARCHAR" />
+		<association property="dept" column="dept_id" javaType="Dept" resultMap="deptResultMap"/>
 		<collection property="courseStatus" ofType="CourseStatus" 
 			resultMap="coursestatusResultMap" />			
 	</resultMap>
@@ -105,13 +106,16 @@
 		        s.stu_age,
 		        s.stu_grade,
 		        s.stu_daynight,
+		        d.dept_id,
+		        d.dept_name,
 		        c.course_id,
 		        c.course_name,
 		        c.course_instructor,
 		        t.status_id,
 		        t.COURSE_SCORE
-		from  SCOTT.student s, SCOTT.COURSE_STATUS t, scott.course c
-		where s.stu_id = t.stu_id
+		from  SCOTT.student s, SCOTT.COURSE_STATUS t, scott.course c, scott.dept d
+		where s.dept_id = d.dept_id
+		  and s.stu_id = t.stu_id
 		  and t.course_id = c.course_id
 	</select>
 	<select id="selectStudentByName" parameterType="String"
