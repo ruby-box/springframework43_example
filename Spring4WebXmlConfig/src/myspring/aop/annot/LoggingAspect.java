@@ -19,17 +19,17 @@ public class LoggingAspect {
 	public void before(JoinPoint joinPoint) {
 		String signatureString = joinPoint.getSignature().getName();	
 		if( logger.isDebugEnabled() ) {
-			logger.debug(">>>> @Before [ " + signatureString + " ] ¸Ş¼­µå ½ÇÇà ÀüÃ³¸® ¼öÇà");
+			logger.debug(">>>> @Before [ " + signatureString + " ] ë©”ì„œë“œ ì‹¤í–‰ ì „ì²˜ë¦¬ ìˆ˜í–‰");
 		}
 		for (Object arg : joinPoint.getArgs()) {
-			logger.debug("@Before [ " + signatureString + " ] ¾Æ±Ô¸ÕÆ® " + arg);			
+			logger.debug("@Before [ " + signatureString + " ] ì•„ê·œë¨¼íŠ¸ " + arg);			
 		}		
 	}
     @AfterReturning(pointcut="execution(public * myspring.user.service.*.*(..))", returning="ret")
 	public void afterReturning(JoinPoint joinPoint, Object ret) {
 		String signatureString = joinPoint.getSignature().getName();		
-		logger.debug("@AfterReturing [ " + signatureString + " ] ¸Ş¼­µå ½ÇÇà ÈÄÃ³¸® ¼öÇà");
-		logger.debug("@AfterReturing [ " + signatureString + " ] ¸®ÅÏ°ª=" + ret);
+		logger.debug("@AfterReturing [ " + signatureString + " ] ë©”ì„œë“œ ì‹¤í–‰ í›„ì²˜ë¦¬ ìˆ˜í–‰");
+		logger.debug("@AfterReturing [ " + signatureString + " ] ë¦¬í„´ê°’=" + ret);
 
 	}
     
@@ -37,13 +37,13 @@ public class LoggingAspect {
     		throwing="ex")
 	public void afterThrowing(JoinPoint joinPoint, Throwable ex) {
 		String signatureString = joinPoint.getSignature().getName();	
-		logger.debug("@AfterThrowing [ " + signatureString + " ] ¸Ş¼­µå ½ÇÇà Áß ¿¹¿Ü ¹ß»ı");
-		logger.debug("@AfterThrowing [ " + signatureString + " ] ¿¹¿Ü=" + ex.getMessage());
+		logger.debug("@AfterThrowing [ " + signatureString + " ] ë©”ì„œë“œ ì‹¤í–‰ ì¤‘ ì˜ˆì™¸ ë°œìƒ");
+		logger.debug("@AfterThrowing [ " + signatureString + " ] ì˜ˆì™¸=" + ex.getMessage());
 	}
     
     @After("execution(* *..*.*User(..))")
 	public void afterFinally(JoinPoint joinPoint) {
 		String signatureString = joinPoint.getSignature().getName();
-		logger.debug("@After [ " + signatureString + " ] ¸Ş¼­µå ½ÇÇà ¿Ï·á");
+		logger.debug("@After [ " + signatureString + " ] ë©”ì„œë“œ ì‹¤í–‰ ì™„ë£Œ");
 	}
 }

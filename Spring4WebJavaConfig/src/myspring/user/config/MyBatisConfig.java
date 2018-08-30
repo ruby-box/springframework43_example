@@ -21,28 +21,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         sqlSessionFactoryRef="sqlSessionFactoryBean")
 public class MyBatisConfig {
 	 /**
-     * myBatisÀÇ {@link org.apache.ibatis.session.SqlSessionFactory}À» »ı¼ºÇÏ´Â ÆÑÅä¸®ºóÀ» µî·ÏÇÑ´Ù.
+     * myBatisì˜ {@link org.apache.ibatis.session.SqlSessionFactory}ì„ ìƒì„±í•˜ëŠ” íŒ©í† ë¦¬ë¹ˆì„ ë“±ë¡í•œë‹¤.
      */
     @Bean
     public SqlSessionFactoryBean sqlSessionFactoryBean(
             DataSource dataSource, ApplicationContext applicationContext) throws IOException {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-        // ¸¶ÀÌ¹ÙÆ¼½º°¡ »ç¿ëÇÑ DataSource¸¦ µî·Ï
+        // ë§ˆì´ë°”í‹°ìŠ¤ê°€ ì‚¬ìš©í•œ DataSourceë¥¼ ë“±ë¡
         factoryBean.setDataSource(dataSource);
-        // ¸¶ÀÌ¹ÙÆ¼½º ¼³Á¤ÆÄÀÏ À§Ä¡ ¼³Á¤
+        // ë§ˆì´ë°”í‹°ìŠ¤ ì„¤ì •íŒŒì¼ ìœ„ì¹˜ ì„¤ì •
         factoryBean.setConfigLocation(applicationContext.getResource("classpath:config/SqlMapConfig.xml"));
-        // com.lge.apip.mgmt.ocpo.*.model ÆĞÅ°Áö ÀÌÇÏÀÇ model Å¬·¡½º ÀÌ¸§À» ÂªÀº º°ÄªÀ¸·Î µî·Ï
+        // com.lge.apip.mgmt.ocpo.*.model íŒ¨í‚¤ì§€ ì´í•˜ì˜ model í´ë˜ìŠ¤ ì´ë¦„ì„ ì§§ì€ ë³„ì¹­ìœ¼ë¡œ ë“±ë¡
         factoryBean.setTypeAliasesPackage("myspring.user.vo");
-        // META-INF/mybatis/mappers ÆĞÅ°Áö ÀÌÇÏÀÇ ¸ğµç XMLÀ» ¸ÅÆÛ·Î µî·Ï
+        // META-INF/mybatis/mappers íŒ¨í‚¤ì§€ ì´í•˜ì˜ ëª¨ë“  XMLì„ ë§¤í¼ë¡œ ë“±ë¡
 //        factoryBean.setMapperLocations(applicationContext.getResources("classpath:config/User.xml"));
         return factoryBean;
     }
 
     /**
-     * MyBatis {@link org.apache.ibatis.session.SqlSession} ºóÀ» µî·ÏÇÑ´Ù.
+     * MyBatis {@link org.apache.ibatis.session.SqlSession} ë¹ˆì„ ë“±ë¡í•œë‹¤.
      *
-     * SqlSessionTemplateÀº SqlSessionÀ» ±¸ÇöÇÏ°í ÄÚµå¿¡¼­ SqlSession¸¦ ´ëÃ¼ÇÏ´Â ¿ªÇÒÀ» ÇÑ´Ù.
-     * ¾²·¹µå¿¡ ¾ÈÀüÇÏ°Ô ÀÛ¼ºµÇ¾ú±â ¶§¹®¿¡ ¿©·¯ DAO³ª ¸ÅÆÛ¿¡¼­ °øÀ¯ ÇÒ ¼ö ÀÖ´Ù.
+     * SqlSessionTemplateì€ SqlSessionì„ êµ¬í˜„í•˜ê³  ì½”ë“œì—ì„œ SqlSessionë¥¼ ëŒ€ì²´í•˜ëŠ” ì—­í• ì„ í•œë‹¤.
+     * ì“°ë ˆë“œì— ì•ˆì „í•˜ê²Œ ì‘ì„±ë˜ì—ˆê¸° ë•Œë¬¸ì— ì—¬ëŸ¬ DAOë‚˜ ë§¤í¼ì—ì„œ ê³µìœ  í•  ìˆ˜ ìˆë‹¤.
      */
     @Bean
     public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {

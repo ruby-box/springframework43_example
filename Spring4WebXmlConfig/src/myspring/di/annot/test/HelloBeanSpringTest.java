@@ -23,10 +23,10 @@ public class HelloBeanSpringTest {
 		System.out.println(context);
 		Hello hello = (Hello) context.getBean(Hello.class);
 		
-		Assert.assertEquals("Hello ¾î³ëÅ×ÀÌ¼Ç", hello.sayHello());
+		Assert.assertEquals("Hello ì–´ë…¸í…Œì´ì…˜", hello.sayHello());
 		hello.print();
 		
 		Printer printer = context.getBean("stringPrinter",Printer.class);
-		Assert.assertEquals("Hello ¾î³ëÅ×ÀÌ¼Ç", printer.toString());
+		Assert.assertEquals("Hello ì–´ë…¸í…Œì´ì…˜", printer.toString());
 	}	
 }

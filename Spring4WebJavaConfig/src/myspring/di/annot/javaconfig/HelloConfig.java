@@ -11,7 +11,7 @@ public class HelloConfig {
 	@Bean
     public Hello hello() {
         Hello hello = new Hello();
-        //hello.setName("ÀÚ¹ÙÄÁÇÇ±×");
+        //hello.setName("ìë°”ì»¨í”¼ê·¸");
         //hello.setPrinter(printer());
         return hello;
     }

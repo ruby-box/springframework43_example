@@ -48,14 +48,14 @@ public class UserController {
 	@RequestMapping("/insertUserForm.do")
 	public ModelAndView insertUserForm() {
 		List<String> genderList = new ArrayList<String>();
-		genderList.add("³²");
-		genderList.add("¿©");
+		genderList.add("ë‚¨");
+		genderList.add("ì—¬");
 
 		List<String> cityList = new ArrayList<String>();
-		cityList.add("¼­¿ï");
-		cityList.add("ºÎ»ê");
-		cityList.add("´ë±¸");
-		cityList.add("Á¦ÁÖ");
+		cityList.add("ì„œìš¸");
+		cityList.add("ë¶€ì‚°");
+		cityList.add("ëŒ€êµ¬");
+		cityList.add("ì œì£¼");
 
 		Map<String, List<String>> map = new HashMap<>();
 		map.put("genderList", genderList);
@@ -81,13 +81,13 @@ public class UserController {
 	public ModelAndView updateUserForm(@RequestParam String id) {
 		UserVO user = userService.getUser(id);
 		List<String> genderList = new ArrayList<String>();
-		genderList.add("³²");
-		genderList.add("¿©");
+		genderList.add("ë‚¨");
+		genderList.add("ì—¬");
 		List<String> cityList = new ArrayList<String>();
-		cityList.add("¼­¿ï");
-		cityList.add("ºÎ»ê");
-		cityList.add("´ë±¸");
-		cityList.add("Á¦ÁÖ");
+		cityList.add("ì„œìš¸");
+		cityList.add("ë¶€ì‚°");
+		cityList.add("ëŒ€êµ¬");
+		cityList.add("ì œì£¼");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("genderList", genderList);
 		map.put("cityList", cityList);
