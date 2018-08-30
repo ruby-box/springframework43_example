@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,17 @@ public class UserTest {
 	@Autowired
 	DataSource dataSource;
 	
+	@Autowired
+	SqlSessionFactory sqlSessionFactory;
+	
+	@Autowired
+	SqlSession sqlSession;
+	
 	@Test
 	public void connection() {
+		
+		System.out.println(sqlSessionFactory.getClass().getName());
+		
 		try {
 			System.out.println(dataSource.getConnection());
 		} catch (SQLException e) {
@@ -25,4 +36,5 @@ public class UserTest {
 			e.printStackTrace();
 		}
 	}
+	
 }
