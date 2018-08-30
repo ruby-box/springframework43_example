@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import myspring.user.service.UserService;
 import myspring.user.vo.StudentVO;
 import myspring.user.vo.UserVO;
 
@@ -28,6 +29,18 @@ public class UserTest {
 	
 	@Autowired
 	SqlSession sqlSession;
+	
+	@Autowired
+	UserService userService;
+	
+	/*
+	 * Service를 주입 > sqlSession을 가진 Dao 호출 > DB 접근 테스트
+	 * */
+	@Test
+	public void callUserService() {
+		UserVO user = userService.getUser("gildong");
+		System.out.println(user);
+	}
 	
 	
 	@Test
