@@ -16,6 +16,8 @@ public class HelloConfig {
 	@Bean
 	public Hello hello() {
 		Hello hello = new Hello();
+		hello.setName("자바Config");
+		hello.setPrinter(sPrinter());
 		return hello;
 	}
 	

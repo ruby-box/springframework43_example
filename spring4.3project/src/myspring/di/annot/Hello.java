@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component("hello")
 public class Hello {
-	@Value("¾î³ëÅ×ÀÌ¼Ç")
+	//@Value("ì–´ë…¸í…Œì´ì…˜")
 	String name;
 
 	@Autowired
