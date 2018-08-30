@@ -13,10 +13,10 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import myspring.di.annot.Hello;
 import myspring.di.annot.Printer;
-import myspring.di.annot.config.HelloConfig;
+import myspring.di.annot.config.HelloScanConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=HelloConfig.class, 
+@ContextConfiguration(classes=HelloScanConfig.class, 
 	loader=AnnotationConfigContextLoader.class) /* Xml이 아닌, Java Config Class를 주입 */
 public class JavaConfigTest {
 	@Autowired
