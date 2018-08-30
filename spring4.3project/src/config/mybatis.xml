@@ -16,8 +16,22 @@
 		</property>
 	</bean>
 	
-	<bean id="sqlsession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- MapperScannerConfigurer 설정 -->
+	<!-- 커스텀 태그를 사용하는 것은 필수는 아님. 빼고 싶으면 UserDaoImplMapper의 어노테이션도 제거해주자 -->
+<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="myspring.user.dao.mapper"/>
+		<property name="annotationClass" value="myspring.user.dao.mapper.MyMapper" /> 
+	</bean> -->
+
+	<!-- Mapper 설정 -->
+	<!-- userMapper에서 sqlSession을 참조하도록 설정 -->
+	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="myspring.user.dao.mapper.UserMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSession" />
 	</bean>
 	
 </beans>

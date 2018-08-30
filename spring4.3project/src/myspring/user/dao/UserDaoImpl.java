@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import myspring.user.vo.UserVO;
-@Repository("userDao")
+//@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
-	@Autowired
+	//@Autowired
     private SqlSession session;
 	
 	public void setSqlSession(SqlSession session) {

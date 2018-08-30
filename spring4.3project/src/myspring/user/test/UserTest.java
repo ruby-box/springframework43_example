@@ -38,12 +38,16 @@ public class UserTest {
 	 * */
 	@Test
 	public void callUserService() {
-		UserVO user = userService.getUser("gildong");
+		UserVO vo = new UserVO("test123456", "테스트123456", "Woman", "Seoul");
+		
+		userService.insertUser(vo);
+		
+		UserVO user = userService.getUser("test123456");
 		System.out.println(user);
 	}
 	
 	
-	@Test
+	@Test @Ignore
 	public void status() {
 		List<StudentVO> stuList = sqlSession.selectList("studentNS.selectStudentCourseStatusById");
 		
@@ -61,7 +65,7 @@ public class UserTest {
 		}
 	}
 	
-	@Test
+	@Test @Ignore
 	public void usersTable() {
 		List<UserVO> userList = sqlSession.selectList("userNS.selectUserList");
 		
