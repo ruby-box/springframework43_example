@@ -12,10 +12,12 @@
 	
 	<!-- Component Auto Scan -->
 	<!-- 하위 VO, DAO, Service 스캔 -->
-	<context:component-scan base-package="myspring.user" />
+	<context:component-scan base-package="myspring" />
 	
 	<!-- AOP 설정 -->
-	<!-- <import resource="classpath:config/aop.xml" /> -->
+	
+	<!-- Aspect 어노테이션이 붙은 Bean을 처리하라는 설정 -->
+	<aop:aspectj-autoproxy />
 	
 	<!-- Register Advice Class bean -->
 	<bean id="ptAdvice" class="myspring.aop.xml.PerformanceTraceAdvice" />
@@ -28,5 +30,7 @@
 				pointcut="execution(public * myspring.user..*(..))" />	<!-- 메서드 명시 -->
 		</aop:aspect>
 	</aop:config>
+	
+	<!-- <import resource="classpath:config/aop.xml" /> -->
 	
 </beans>
