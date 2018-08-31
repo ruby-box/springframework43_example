@@ -3,9 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
+	<!-- TransactionManager 설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<!-- properties file 설정 -->
 	<context:property-placeholder location="classpath:config/value.properties" />
 	
@@ -16,4 +25,20 @@
 		p:username="${db.username}"
 		p:password="${db.password}" 
 	/>
+	
+	<!-- Transaction Advice 설정 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="updateUser" propagation="REQUIRED" />	<!-- 호출하는 Service쪽 -->
+			<tx:method name="update" propagation="REQUIRED"/>	<!-- 호출받는 DAO -->
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- Transaction Advisor 설정 -->
+	<aop:config>
+		<aop:pointcut expression="execution(public * myspring.user..*(..))" id="txPointCut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+	</aop:config>
+
 </beans>

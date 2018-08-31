@@ -33,13 +33,19 @@ public class UserTest {
 	@Autowired
 	UserService userService;
 	
+	@Test
+	public void updateUser() {
+		UserVO vo = new UserVO("test123456", "테스트2", "Man", "Deagu");
+		
+		userService.updateUser(vo);
+	}
+	
 	/*
 	 * Service를 주입 > sqlSession을 가진 Dao 호출 > DB 접근 테스트
 	 * */
-	@Test
+	@Test //@Ignore
 	public void callUserService() {
 		//UserVO vo = new UserVO("test123456", "테스트123456", "Woman", "Seoul");
-		
 		//userService.insertUser(vo);
 		
 		UserVO user = userService.getUser("test123456");
