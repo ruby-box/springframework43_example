@@ -38,4 +38,25 @@ public class RestUserController {
 			return Boolean.FALSE;
 		}
 	}
+	
+	/*RequestBody : Http Request Body를 Java 객체로 받을 수 있음 */
+	@RequestMapping(value="/users", method=RequestMethod.PUT, headers= {"content-type=application/json"})
+	public Boolean updateUser(@RequestBody UserVO user) {
+		if(user != null) {
+			userService.updateUser(user);
+			return Boolean.TRUE;
+		} else {
+			return Boolean.FALSE;
+		}
+	}
+	
+	@RequestMapping(value="/users/{id}", method=RequestMethod.DELETE)
+	public Boolean deleteUser(@PathVariable String id) {
+		if(id != null) {
+			userService.deleteUser(id);
+			return Boolean.TRUE;
+		} else {
+			return Boolean.FALSE;
+		}
+	}
 }
