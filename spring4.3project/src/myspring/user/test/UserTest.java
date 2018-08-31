@@ -38,9 +38,9 @@ public class UserTest {
 	 * */
 	@Test
 	public void callUserService() {
-		UserVO vo = new UserVO("test123456", "테스트123456", "Woman", "Seoul");
+		//UserVO vo = new UserVO("test123456", "테스트123456", "Woman", "Seoul");
 		
-		userService.insertUser(vo);
+		//userService.insertUser(vo);
 		
 		UserVO user = userService.getUser("test123456");
 		System.out.println(user);

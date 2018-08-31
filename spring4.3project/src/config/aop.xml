@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	
-	<!-- MyBatis-Spring 설정 -->
-	<import resource="classpath:config/mybatis.xml" />
-	
-	<!-- Component Auto Scan -->
-	<!-- 하위 VO, DAO, Service 스캔 -->
-	<context:component-scan base-package="myspring.user" />
-	
-	<!-- AOP 설정 -->
-	<!-- <import resource="classpath:config/aop.xml" /> -->
-	
+
 	<!-- Register Advice Class bean -->
 	<bean id="ptAdvice" class="myspring.aop.xml.PerformanceTraceAdvice" />
 	
 	<!-- Setting Aspect: Advice를 참조하고, Advice의 type설정, PointCut 설정 -->
-	<!-- 모든 클래스에 적용되는 것이 아니라, Bean(Service, Repository 같은) 만 적용되어 진다 -->
 	<aop:config>
 		<aop:aspect ref="ptAdvice">
-			<aop:around method="trace" 
-				pointcut="execution(public * myspring.user..*(..))" />	<!-- 메서드 명시 -->
+			<aop:around method="trace" pointcut="excution(public * myspring.user..*(..))" />	<!-- 메서드 명시 -->
 		</aop:aspect>
 	</aop:config>
-	
 </beans>
